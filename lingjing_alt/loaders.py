@@ -126,7 +126,7 @@ def _load_workbook(path: Path, max_rows: int, max_columns: int) -> LoadedInput:
         table.sheet_state = worksheet.sheet_state
         table.macro_present = macro_present
         table.warnings.extend(warnings)
-        if worksheet.max_row > max_rows or worksheet.max_column > max_columns:
+        if worksheet.max_row > max_rows + 1 or worksheet.max_column > max_columns:
             table.truncated = True
             table.warnings.append(f"sheet exceeded configured limit of {max_rows:,} rows or {max_columns:,} columns")
             partial = True

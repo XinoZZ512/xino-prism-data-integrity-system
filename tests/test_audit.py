@@ -60,6 +60,19 @@ def test_csv_audit_reports_duplicate_row_and_schema(tmp_path: Path) -> None:
     assert destinations["html"].read_text(encoding="utf-8").startswith("<!doctype html>")
 
 
+def test_workbook_exact_row_limit_is_not_marked_partial(tmp_path: Path) -> None:
+    source = tmp_path / "exact-limit.xlsx"
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.append(["value"])
+    sheet.append([1])
+    sheet.append([2])
+    workbook.save(source)
+    result = audit_path(source, AuditConfig(max_rows=2))
+    assert not result.warnings
+    assert all(entry.status != "partial" for entry in result.coverage)
+
+
 def test_row_limit_reports_partial_row_coverage_without_column_warning(tmp_path: Path) -> None:
     source = tmp_path / "fixture.csv"
     write_csv_fixture(source)

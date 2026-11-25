@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import json
@@ -12,10 +12,10 @@ from .models import AuditError
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="lingjing-alt",
+        prog="xino-prism",
         description="Local-first, read-only data integrity and spreadsheet audit toolkit.",
     )
-    parser.add_argument("--version", action="version", version=f"lingjing-alt {__version__}")
+    parser.add_argument("--version", action="version", version=f"xino-prism {__version__}")
     subparsers = parser.add_subparsers(dest="command", required=True)
     audit = subparsers.add_parser("audit", help="audit a CSV, TSV, XLSX, or XLSM file")
     audit.add_argument("input", type=Path, help="input file; it is never overwritten")

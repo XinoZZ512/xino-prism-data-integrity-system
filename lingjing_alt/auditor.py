@@ -160,7 +160,7 @@ def write_html(result: AuditResult, destination: Path) -> None:
     warning_html = "".join(f"<li>{html.escape(warning)}</li>" for warning in result.warnings) or "<li>无</li>"
     content = f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LingJing Alt 审计报告 - {html.escape(result.file_name)}</title>
+<title>Xino Prism 审计报告 - {html.escape(result.file_name)}</title>
 <style>
 :root {{ color-scheme: light; font-family: system-ui,-apple-system,Segoe UI,sans-serif; background:#f6f8fa; color:#24292f; }}
 body {{ margin:0; }} main {{ max-width:1120px; margin:auto; padding:32px 20px 64px; }}
@@ -175,14 +175,14 @@ summary {{ cursor:pointer; font-weight:600; }} .badge {{ display:inline-block; m
 .high .badge {{ background:#cf222e; }} .medium .badge {{ background:#bf8700; }} .low .badge {{ background:#0969da; }} code {{ white-space:pre-wrap; overflow-wrap:anywhere; }}
 .note {{ color:#57606a; font-size:13px; }}
 </style></head><body><main>
-<header><h1>LingJing Alt 本地数据完整性审计</h1>
+<header><h1>思诺棱镜-数据诚信检测系统本地数据完整性审计</h1>
 <div class='meta'>文件：{html.escape(result.file_name)}<br>SHA-256：{html.escape(result.file_hash)}<br>生成时间：{html.escape(result.created_at)}</div>
 <div class='summary'><div class='metric'><strong>{result.finding_count}</strong>发现</div><div class='metric'><strong>{sum(entry.status == 'completed' for entry in result.coverage)}</strong>已运行检测</div><div class='metric'><strong>{sum(entry.status in {'partial','skipped'} for entry in result.coverage)}</strong>覆盖限制</div></div></header>
 <section><h2>解释边界</h2><p class='note'>本报告是本地、只读的风险筛查，不证明造假、错误意图或 misconduct。请结合原始记录、实验设计和人工复核解释每条 finding。宏未执行，公式未重新计算，缺少覆盖的结果不能视为“通过”。</p></section>
 <section><h2>发现</h2>{''.join(findings) if findings else '<p>在已运行的检测中没有发现候选问题。请先阅读覆盖表和警告，再决定是否需要进一步验证。</p>'}</section>
 <section><h2>覆盖范围</h2><table><thead><tr><th>检测器</th><th>状态</th><th>说明</th><th>发现数</th></tr></thead><tbody>{coverage_rows}</tbody></table></section>
 <section><h2>警告</h2><ul>{warning_html}</ul></section>
-<footer class='note'>LingJing Alt 0.1.0 · 输入文件不会被覆盖 · 默认不发起网络请求</footer>
+<footer class='note'>Xino Prism 0.1.0 · 输入文件不会被覆盖 · 默认不发起网络请求</footer>
 </main></body></html>"""
     destination.write_text(content, encoding="utf-8")
 

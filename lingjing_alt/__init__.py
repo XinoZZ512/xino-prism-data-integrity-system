@@ -1,4 +1,4 @@
-﻿"""Local-first replacement for the LingJingSystem audit workflow."""
+"""思诺棱镜-数据诚信检测系统：本地优先的数据诚信审计工具。"""
 
 from .auditor import AuditConfig, audit_path
 from .models import AuditResult, Finding

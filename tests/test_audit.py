@@ -7,6 +7,7 @@ from pathlib import Path
 import openpyxl
 
 from lingjing_alt.auditor import AuditConfig, audit_path, write_reports
+from lingjing_alt.desktop import AuditJob
 from lingjing_alt.cli import main
 
 
@@ -114,6 +115,12 @@ def test_workbook_audit_detects_formula_and_structure_risks(tmp_path: Path) -> N
     assert "formula_cycle_risk" in detector_ids
     assert "hidden_structure" in detector_ids
     assert any(entry.detector_id == "formula_cycle_risk" and entry.status == "completed" for entry in result.coverage)
+
+
+def test_desktop_job_carries_strict_mode_without_importing_tk(tmp_path: Path) -> None:
+    job = AuditJob(tmp_path / "input.csv", tmp_path / "reports", AuditConfig(), strict=True)
+    assert job.strict is True
+    assert job.output_dir.name == "reports"
 
 
 def test_cli_exit_code_and_outputs(tmp_path: Path, capsys) -> None:

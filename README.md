@@ -40,6 +40,27 @@ python -m lingjing_alt audit input.csv --out-dir reports --benford
 python -m lingjing_alt audit input.xlsx --out-dir reports --max-rows 50000 --max-columns 256 --strict
 ```
 
+## Windows 桌面版
+
+项目包含一个复用同一审计核心的 Windows 桌面界面。需要带 Tk 图形库的 Python 3.11+：
+
+```powershell
+python -m pip install -e ".[desktop]"
+python -m lingjing_alt.desktop
+# 或使用安装后的 GUI 入口
+xino-prism-desktop
+```
+
+界面支持选择输入文件和报告目录、设置行列安全上限、可选 Benford 筛查、严格覆盖提示、后台运行审计，以及打开 HTML 报告。它不会登录、上传文件或执行宏；桌面版不会覆盖输入文件。
+
+在 Windows 上生成单文件可执行程序：
+
+```powershell
+.\packaging\build-windows.ps1
+```
+
+成功后文件位于 `dist\XinoPrism.exe`。当前仓库不提交二进制构建产物；构建脚本会在本机生成。
+
 ## 输出文件
 
 - `*.audit.json`：机器可读结果，结构约束见 [`schema/audit-result.schema.json`](schema/audit-result.schema.json)。
@@ -67,8 +88,8 @@ python -m pytest
 1. 增加稳定的 XLSX 公式解析器、跨工作表依赖图和受控 LibreOffice 重算适配。
 2. 增加 GRIM、GRIMMER、SPRITE、statcheck 文本抽取和 `strait` 风格有界量表检查。
 3. 建立合成缺陷基准集、真实公开工作簿精度/召回评估和版本化规则目录。
-4. 增加本地浏览器 UI、审计历史、规则配置、finding 忽略理由和 SARIF 导出。
-5. 用 PyInstaller 打包 Windows 可执行版本，并在打包前审查依赖许可证和网络行为。
+4. 增加审计历史、规则配置、finding 忽略理由和 SARIF 导出。
+5. 增加更多统计一致性检测器和公开基准集评估。
 
 ## 许可证
 

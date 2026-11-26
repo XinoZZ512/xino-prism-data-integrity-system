@@ -117,6 +117,13 @@ def test_workbook_audit_detects_formula_and_structure_risks(tmp_path: Path) -> N
     assert any(entry.detector_id == "formula_cycle_risk" and entry.status == "completed" for entry in result.coverage)
 
 
+def test_desktop_uses_instance_tk_module_reference() -> None:
+    source = Path(__file__).parents[1] / "lingjing_alt" / "desktop.py"
+    text = source.read_text(encoding="utf-8")
+    assert "self.summary = tk.Text(" not in text
+    assert "self.summary = self.tk.Text(" in text
+
+
 def test_desktop_job_carries_strict_mode_without_importing_tk(tmp_path: Path) -> None:
     job = AuditJob(tmp_path / "input.csv", tmp_path / "reports", AuditConfig(), strict=True)
     assert job.strict is True

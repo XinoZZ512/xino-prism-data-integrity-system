@@ -113,7 +113,7 @@ class DesktopApp:
         report_frame.grid(row=1, column=0, sticky="nsew")
         report_frame.columnconfigure(0, weight=1)
         report_frame.rowconfigure(0, weight=1)
-        self.summary = tk.Text(report_frame, height=18, wrap="word", state="disabled", background="#ffffff")
+        self.summary = self.tk.Text(report_frame, height=18, wrap="word", state="disabled", background="#ffffff")
         self.summary.grid(row=0, column=0, sticky="nsew")
         scrollbar = self.ttk.Scrollbar(report_frame, orient="vertical", command=self.summary.yview)
         scrollbar.grid(row=0, column=1, sticky="ns")

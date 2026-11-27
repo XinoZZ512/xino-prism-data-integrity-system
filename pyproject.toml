@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xino-prism-data-integrity-system"
+version = "0.1.0"
+description = "Xino Prism local-first, read-only data integrity and spreadsheet audit toolkit"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Xino Prism contributors"}]
+dependencies = ["openpyxl>=3.1"]
+
+[project.scripts]
+lingjing-alt = "lingjing_alt.cli:main"
+xino-prism = "lingjing_alt.cli:main"
+
+[project.gui-scripts]
+xino-prism-desktop = "lingjing_alt.desktop:main"
+
+[project.optional-dependencies]
+desktop = ["pyinstaller>=6.0"]
+
+[tool.setuptools.packages.find]
+include = ["lingjing_alt*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,4 +1,11 @@
 # 思诺棱镜-数据诚信检测系统
+![xino's lab logo](assets/xino-prism-logo.jpg)
+
+## 下载 Windows 版
+
+[下载最新版 XinoPrism.exe](https://github.com/XinoZZ512/xino-prism-data-integrity-system/releases/latest/download/XinoPrism.exe)
+
+这是一个免安装的 Windows 桌面程序。下载后双击即可运行；输入文件只在本机读取，报告写入你选择的目录。首次运行时 Windows SmartScreen 可能提示“未知发布者”，因为当前版本尚未购买代码签名证书。
 
 思诺棱镜-数据诚信检测系统是一个**本地优先、只读、无账号、无计费、默认不联网**的数据完整性与表格审计工具。它是根据公开研究方法和独立工程设计实现的平替 MVP，不包含 LingJingSystem 的专有代码、二进制或资源。
 
